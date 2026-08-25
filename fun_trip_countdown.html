@@ -76,7 +76,7 @@ body:before{
 </main>
 
 <!-- Audio Elements -->
-<audio id="bgMusic" autoplay loop preload="auto">
+<audio id="bgMusic" loop preload="auto" muted>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 <audio id="tripSound" preload="auto">
@@ -88,11 +88,24 @@ const target = new Date("2026-09-29T00:00:00+05:30");
 const bgMusic = document.getElementById("bgMusic");
 const tripSound = document.getElementById("tripSound");
 let isTripped = false;
+let musicStarted = false;
 
-// Auto-play music on user interaction
-document.addEventListener("click", () => {
-  bgMusic.play().catch(e => console.log("Music play failed:", e));
-}, { once: true });
+// Start music on first user interaction
+function startMusic() {
+  if (!musicStarted) {
+    bgMusic.muted = false;
+    bgMusic.play().catch(e => console.log("Music play failed:", e));
+    musicStarted = true;
+  }
+}
+
+// Add multiple event listeners for better coverage
+["click", "touchstart", "keydown"].forEach(event => {
+  document.addEventListener(event, startMusic, { once: true });
+});
+
+// Also try to autoplay with muted first
+bgMusic.play().catch(e => console.log("Initial play attempt failed:", e));
 
 function updateCountdown(){
   const now = new Date();
@@ -102,6 +115,7 @@ function updateCountdown(){
     if (!isTripped) {
       // Trip has begun - switch to trip sound
       bgMusic.pause();
+      tripSound.muted = false;
       tripSound.play().catch(e => console.log("Trip sound play failed:", e));
       isTripped = true;
       
