@@ -52,9 +52,32 @@ body:before{
   .grid{grid-template-columns:repeat(2,1fr)}
   .date{margin-bottom:18px}
 }
+  #musicButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+#musicButton:hover {
+    transform: scale(1.05);
+}
 </style>
 </head>
 <body>
+  <audio id="bgMusic" loop>
+    <source src="Tame Impala - Loser - LatinHype.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicButton" onclick="toggleMusic()">🎵 Play Music</button>
 <main class="card">
   <div class="kicker">TRACK YOUR</div>
   <div class="title">FUN TRIP</div>
@@ -147,6 +170,18 @@ function updateCountdown(){
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+  const bgMusic = document.getElementById("bgMusic");
+const musicButton = document.getElementById("musicButton");
+
+function toggleMusic() {
+    if (bgMusic.paused) {
+        bgMusic.play();
+        musicButton.textContent = "🔊 Music On";
+    } else {
+        bgMusic.pause();
+        musicButton.textContent = "🔇 Music Off";
+    }
+}
 </script>
 </body>
 </html>
