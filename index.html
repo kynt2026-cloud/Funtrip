@@ -12,7 +12,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     width: 100%;
     height: 100%;
@@ -22,67 +23,119 @@ html, body {
 
 body {
     min-height: 100vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
     background:
-        radial-gradient(circle at 15% 20%, rgba(255, 93, 162, .55), transparent 32%),
-        radial-gradient(circle at 85% 15%, rgba(84, 182, 255, .52), transparent 30%),
-        radial-gradient(circle at 75% 85%, rgba(156, 92, 255, .58), transparent 34%),
-        linear-gradient(135deg, #07121e 0%, #172b55 35%, #4b246f 68%, #11152e 100%);
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(255, 80, 160, .65),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(70, 180, 255, .60),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 90%,
+            rgba(160, 80, 255, .65),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 20% 90%,
+            rgba(255, 170, 70, .40),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #07121e 0%,
+            #172b55 30%,
+            #54266f 65%,
+            #11152e 100%
+        );
+
+    background-size: 180% 180%;
+
+    animation:
+        gradientFlow 14s ease infinite;
 
     overflow: hidden;
 }
 
 
-/* DARK OVERLAY */
+/* =========================
+   BACKGROUND OVERLAY
+========================= */
 
 body::before {
     content: "";
+
     position: fixed;
     inset: 0;
 
     background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.12), transparent 38%),
-        linear-gradient(180deg, rgba(7, 18, 45, .10), rgba(9, 8, 28, .42));
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,255,255,.14),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(5,15,40,.05),
+            rgba(5,5,25,.45)
+        );
+
+    pointer-events: none;
 
     z-index: 0;
 }
 
 
-/* MAIN CARD */
+/* =========================
+   MAIN CARD
+========================= */
 
 .card {
     position: relative;
+
     z-index: 1;
 
     width: min(1200px, 94vw);
 
-    padding: clamp(24px, 4vw, 54px);
+    padding:
+        clamp(24px, 4vw, 54px);
 
-    border: 1px solid rgba(255,255,255,.42);
+    border:
+        1px solid rgba(255,255,255,.42);
 
     border-radius: 28px;
 
     background:
-        linear-gradient(135deg,
-            rgba(255,255,255,.14),
-            rgba(255,255,255,.05) 45%,
-            rgba(150,90,255,.10));
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.15),
+            rgba(255,255,255,.06) 45%,
+            rgba(150,90,255,.12)
+        );
 
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(12px);
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,.35),
-        0 0 90px rgba(139, 92, 246, .20);
+        0 30px 80px rgba(0,0,0,.38),
+        0 0 100px rgba(139,92,246,.22);
 }
 
 
-/* TEXT */
+/* =========================
+   KICKER
+========================= */
 
 .kicker {
-    font-size: clamp(14px,2vw,22px);
+    font-size:
+        clamp(14px, 2vw, 22px);
 
     letter-spacing: .34em;
 
@@ -90,60 +143,121 @@ body::before {
 }
 
 
+/* =========================
+   TITLE
+========================= */
+
 .title {
-    margin: 8px 0 0;
+    margin:
+        8px 0 0;
 
     text-align: center;
 
-    font-size: clamp(48px,8vw,104px);
+    font-size:
+        clamp(48px, 8vw, 104px);
 
     font-weight: 900;
 
     letter-spacing: .02em;
 
-    color: #ffb82e;
+    background:
+        linear-gradient(
+            90deg,
+            #ffd166,
+            #ff5fa2,
+            #9b8cff,
+            #55cfff,
+            #ffd166
+        );
+
+    background-size: 300% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        textGradient 7s ease infinite;
 
     text-shadow:
-        0 5px 25px rgba(0,0,0,.35);
+        0 5px 25px rgba(0,0,0,.25);
 }
 
+
+/* =========================
+   SUBTITLE
+========================= */
 
 .subtitle {
     text-align: center;
 
-    font-size: clamp(13px,1.8vw,21px);
+    font-size:
+        clamp(13px, 1.8vw, 21px);
 
     letter-spacing: .16em;
 
-    margin: 5px 0 34px;
+    margin:
+        5px 0 34px;
 }
 
 
+/* =========================
+   START TEXT
+========================= */
+
 .start {
     text-align: center;
-
-    color: #ffb82e;
 
     font-weight: 700;
 
     letter-spacing: .18em;
 
-    font-size: clamp(14px,2vw,21px);
+    font-size:
+        clamp(14px, 2vw, 21px);
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffd166,
+            #ff7ab8,
+            #9b8cff,
+            #6dd5ff,
+            #ffd166
+        );
+
+    background-size: 300% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        textGradient 7s ease infinite;
 }
 
+
+/* =========================
+   DATE
+========================= */
 
 .date {
     text-align: center;
 
-    font-size: clamp(30px,5vw,62px);
+    font-size:
+        clamp(30px, 5vw, 62px);
 
     font-weight: 800;
 
-    margin: 10px 0 26px;
+    margin:
+        10px 0 26px;
 }
 
 
-/* COUNTDOWN */
+/* =========================
+   COUNTDOWN GRID
+========================= */
 
 .grid {
     display: grid;
@@ -155,25 +269,79 @@ body::before {
 }
 
 
+/* =========================
+   COUNTDOWN BOX
+========================= */
+
 .box {
+    position: relative;
+
+    overflow: hidden;
+
     background:
-        linear-gradient(145deg,
-            rgba(255,255,255,.12),
-            rgba(30,25,65,.48));
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.13),
+            rgba(25,25,65,.48)
+        );
 
     border:
         1px solid rgba(255,255,255,.25);
 
     border-radius: 17px;
 
-    padding: 20px 10px;
+    padding:
+        20px 10px;
 
     text-align: center;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.15),
+        0 10px 30px rgba(0,0,0,.12);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    top: -80px;
+    left: -80px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.15),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+.box:hover {
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.25),
+        0 0 25px rgba(150,100,255,.15);
 }
 
 
+/* =========================
+   NUMBER
+========================= */
+
 .num {
-    font-size: clamp(42px,7vw,78px);
+    font-size:
+        clamp(42px, 7vw, 78px);
 
     font-weight: 900;
 
@@ -181,29 +349,49 @@ body::before {
 }
 
 
+/* =========================
+   LABEL
+========================= */
+
 .label {
     margin-top: 9px;
-
-    color: #ffb82e;
 
     font-size: 13px;
 
     font-weight: 800;
 
     letter-spacing: .15em;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffd166,
+            #ff7ab8,
+            #9b8cff,
+            #6dd5ff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
 }
 
 
-/* TODAY */
+/* =========================
+   TODAY
+========================= */
 
 .today {
     width: max-content;
 
     max-width: 100%;
 
-    margin: 20px auto 0;
+    margin:
+        20px auto 0;
 
-    padding: 11px 20px;
+    padding:
+        11px 20px;
 
     border:
         1px solid rgba(255,255,255,.25);
@@ -211,36 +399,67 @@ body::before {
     border-radius: 999px;
 
     background:
-        linear-gradient(90deg,
-            rgba(255, 95, 162, .16),
-            rgba(88, 166, 255, .14),
-            rgba(156, 92, 255, .16));
+        linear-gradient(
+            90deg,
+            rgba(255,95,162,.16),
+            rgba(88,166,255,.14),
+            rgba(156,92,255,.16)
+        );
 
     font-size:
-        clamp(13px,1.7vw,18px);
+        clamp(13px, 1.7vw, 18px);
 
     letter-spacing: .08em;
-}
 
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.10);
+}
 
 .today b {
-    color: #ffb82e;
+    background:
+        linear-gradient(
+            90deg,
+            #ffd166,
+            #ff7ab8,
+            #9b8cff,
+            #6dd5ff
+        );
+
+    background-size: 300% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        textGradient 7s ease infinite;
 }
 
 
-/* MESSAGE */
+/* =========================
+   MESSAGE
+========================= */
 
 .message {
     text-align: center;
 
     font-size:
-        clamp(20px,3vw,34px);
+        clamp(20px, 3vw, 34px);
 
     font-style: italic;
 
-    margin: 24px 0 12px;
+    margin:
+        24px 0 12px;
+
+    text-shadow:
+        0 3px 15px rgba(0,0,0,.25);
 }
 
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer {
     text-align: center;
@@ -253,65 +472,55 @@ body::before {
 }
 
 
-/* MUSIC BUTTON */
+/* =========================
+   GRADIENT ANIMATIONS
+========================= */
 
-#musicButton {
+@keyframes gradientFlow {
 
-    position: fixed;
+    0% {
+        background-position:
+            0% 50%;
+    }
 
-    right: 20px;
+    50% {
+        background-position:
+            100% 50%;
+    }
 
-    bottom: 20px;
-
-    z-index: 9999;
-
-    padding:
-        13px 22px;
-
-    border:
-        1px solid rgba(255,255,255,.35);
-
-    border-radius: 999px;
-
-    background:
-        rgba(0,0,0,.75);
-
-    color: white;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.4);
-
-    transition:
-        transform .2s,
-        background .2s;
+    100% {
+        background-position:
+            0% 50%;
+    }
 }
 
 
-#musicButton:hover {
+@keyframes textGradient {
 
-    transform:
-        scale(1.08);
+    0% {
+        background-position:
+            0% 50%;
+    }
 
-    background:
-        #ffb82e;
+    50% {
+        background-position:
+            100% 50%;
+    }
 
-    color:
-        #07121e;
+    100% {
+        background-position:
+            0% 50%;
+    }
 }
 
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px) {
 
     .card {
-
         padding:
             22px 16px;
 
@@ -319,58 +528,44 @@ body::before {
             20px;
     }
 
+    .grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================
+   VERY SMALL SCREENS
+========================= */
+
+@media(max-width:380px) {
+
+    .card {
+        padding:
+            18px 12px;
+    }
 
     .grid {
-
-        grid-template-columns:
-            repeat(2,1fr);
+        gap: 9px;
     }
 
-
-    #musicButton {
-
-        right: 12px;
-
-        bottom: 12px;
-
+    .box {
         padding:
-            10px 16px;
-
-        font-size: 13px;
+            16px 6px;
     }
-}
 
+    .subtitle {
+        letter-spacing:
+            .08em;
+    }
 
-/* GRADIENT EFFECTS */
-body {
-    background-size: 180% 180%;
-    animation: gradientFlow 14s ease infinite;
-}
+    .footer {
+        font-size:
+            9px;
+    }
 
-.title,
-.start,
-.label,
-.today b {
-    background: linear-gradient(90deg, #ffd166, #ff7ab8, #9b8cff, #6dd5ff);
-    background-size: 250% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: textGradient 7s ease infinite;
-}
-
-.box {
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
-}
-
-@keyframes gradientFlow {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-@keyframes textGradient {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
 }
 
 </style>
@@ -387,6 +582,7 @@ body {
 <audio
     id="bgMusic"
     preload="auto"
+    autoplay
     loop>
 
     <source
@@ -394,18 +590,6 @@ body {
         type="audio/mpeg">
 
 </audio>
-
-
-<!-- MUSIC BUTTON -->
-
-<button
-    id="musicButton"
-    type="button">
-
-    🎵 Play Music
-
-</button>
-
 
 
 <!-- ==========================
@@ -440,8 +624,9 @@ body {
     </div>
 
 
-
-    <!-- COUNTDOWN -->
+    <!-- ==========================
+         COUNTDOWN
+    =========================== -->
 
     <section
         class="grid"
@@ -465,7 +650,6 @@ body {
         </div>
 
 
-
         <div class="box">
 
             <div
@@ -483,7 +667,6 @@ body {
         </div>
 
 
-
         <div class="box">
 
             <div
@@ -499,7 +682,6 @@ body {
             </div>
 
         </div>
-
 
 
         <div class="box">
@@ -522,8 +704,9 @@ body {
     </section>
 
 
-
-    <!-- TODAY -->
+    <!-- ==========================
+         TODAY
+    =========================== -->
 
     <div class="today">
 
@@ -536,12 +719,18 @@ body {
     </div>
 
 
+    <!-- ==========================
+         MESSAGE
+    =========================== -->
 
     <div class="message">
         Let the adventure begin!
     </div>
 
 
+    <!-- ==========================
+         FOOTER
+    =========================== -->
 
     <div class="footer">
 
@@ -563,7 +752,6 @@ body {
 
 
 </main>
-
 
 
 <script>
@@ -599,30 +787,35 @@ function updateCountdown() {
         now.getTime();
 
 
-
-    /* TRIP HAS STARTED */
+    /* ==========================
+       TRIP HAS STARTED
+    =========================== */
 
     if (difference <= 0) {
 
 
         document.getElementById(
             "days"
-        ).textContent = "00";
+        ).textContent =
+            "00";
 
 
         document.getElementById(
             "hours"
-        ).textContent = "00";
+        ).textContent =
+            "00";
 
 
         document.getElementById(
             "minutes"
-        ).textContent = "00";
+        ).textContent =
+            "00";
 
 
         document.getElementById(
             "seconds"
-        ).textContent = "00";
+        ).textContent =
+            "00";
 
 
         document.querySelector(
@@ -640,7 +833,9 @@ function updateCountdown() {
     }
 
 
-    /* COUNTDOWN IS STILL RUNNING */
+    /* ==========================
+       COUNTDOWN RUNNING
+    =========================== */
 
     else {
 
@@ -679,39 +874,39 @@ function updateCountdown() {
             );
 
 
-
         document.getElementById(
             "days"
         ).textContent =
             String(days)
-            .padStart(2,"0");
+            .padStart(2, "0");
 
 
         document.getElementById(
             "hours"
         ).textContent =
             String(hours)
-            .padStart(2,"0");
+            .padStart(2, "0");
 
 
         document.getElementById(
             "minutes"
         ).textContent =
             String(minutes)
-            .padStart(2,"0");
+            .padStart(2, "0");
 
 
         document.getElementById(
             "seconds"
         ).textContent =
             String(seconds)
-            .padStart(2,"0");
+            .padStart(2, "0");
 
     }
 
 
-
-    /* TODAY'S DATE */
+    /* ==========================
+       TODAY'S DATE
+    =========================== */
 
     const today =
         new Intl.DateTimeFormat(
@@ -737,11 +932,9 @@ function updateCountdown() {
 }
 
 
-
 /* =================================
    MUSIC
 ================================= */
-
 
 const music =
     document.getElementById(
@@ -749,70 +942,92 @@ const music =
     );
 
 
-const musicButton =
-    document.getElementById(
-        "musicButton"
-    );
+/*
+   Try to play music automatically.
+   Some browsers block audible autoplay.
+*/
+
+function startMusic() {
+
+    music.volume = 1.0;
+
+    const playPromise =
+        music.play();
 
 
+    if (playPromise !== undefined) {
 
-musicButton.addEventListener(
-    "click",
+        playPromise.catch(
+            function(error) {
+
+                console.log(
+                    "Autoplay blocked by browser:",
+                    error
+                );
+
+            }
+        );
+
+    }
+
+}
+
+
+/*
+   Try autoplay when page loads.
+*/
+
+window.addEventListener(
+    "load",
     function() {
 
-
-        if (music.paused) {
-
-
-            music.play()
-                .then(function() {
-
-
-                    musicButton.textContent =
-                        "🔊 Music On";
-
-
-                })
-                .catch(function(error) {
-
-
-                    console.log(
-                        "Music could not play:",
-                        error
-                    );
-
-
-                    musicButton.textContent =
-                        "❌ Music Not Found";
-
-
-                });
-
-
-        }
-
-
-        else {
-
-
-            music.pause();
-
-
-            musicButton.textContent =
-                "🎵 Play Music";
-
-        }
-
+        startMusic();
 
     }
 );
 
 
+/*
+   If the browser blocks autoplay,
+   start the music after the first
+   user interaction.
+
+   There is NO button displayed.
+*/
+
+[
+    "click",
+    "touchstart",
+    "keydown",
+    "pointerdown"
+].forEach(
+    function(eventName) {
+
+        document.addEventListener(
+            eventName,
+
+            function() {
+
+                if (music.paused) {
+
+                    startMusic();
+
+                }
+
+            },
+
+            {
+                once: true
+            }
+        );
+
+    }
+);
+
 
 /* =================================
-   START
+   START COUNTDOWN
 ================================= */
-
 
 updateCountdown();
 
@@ -825,5 +1040,6 @@ setInterval(
 
 </script>
 
+
 </body>
-</html>
+    </html>
