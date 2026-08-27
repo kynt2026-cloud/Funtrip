@@ -1,397 +1,789 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Fun Trip Countdown</title>
 
 <style>
+
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #fff;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
 }
 
 body {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #07121e url("trip-background.png") center/cover no-repeat fixed;
-  overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        #07121e url("trip-background.png")
+        center / cover no-repeat fixed;
+
+    overflow: hidden;
 }
 
-body:before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(2,10,18,.32),
-    rgba(2,10,18,.68)
-  );
-  z-index: 0;
+
+/* DARK OVERLAY */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(2,10,18,.32),
+            rgba(2,10,18,.68)
+        );
+
+    z-index: 0;
 }
+
+
+/* MAIN CARD */
 
 .card {
-  position: relative;
-  z-index: 1;
-  width: min(1200px, 94vw);
-  padding: clamp(24px, 4vw, 54px);
-  border: 1px solid rgba(255,255,255,.42);
-  border-radius: 28px;
-  background: rgba(4,12,21,.34);
-  backdrop-filter: blur(5px);
-  box-shadow: 0 30px 80px rgba(0,0,0,.35);
+    position: relative;
+    z-index: 1;
+
+    width: min(1200px, 94vw);
+
+    padding: clamp(24px, 4vw, 54px);
+
+    border: 1px solid rgba(255,255,255,.42);
+
+    border-radius: 28px;
+
+    background: rgba(4,12,21,.34);
+
+    backdrop-filter: blur(5px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
 }
+
+
+/* TEXT */
 
 .kicker {
-  font-size: clamp(14px, 2vw, 22px);
-  letter-spacing: .34em;
-  text-align: center;
+    font-size: clamp(14px,2vw,22px);
+
+    letter-spacing: .34em;
+
+    text-align: center;
 }
+
 
 .title {
-  margin: 8px 0 0;
-  text-align: center;
-  font-size: clamp(48px, 8vw, 104px);
-  font-weight: 900;
-  letter-spacing: .02em;
-  color: #ffb82e;
-  text-shadow: 0 5px 25px rgba(0,0,0,.35);
+    margin: 8px 0 0;
+
+    text-align: center;
+
+    font-size: clamp(48px,8vw,104px);
+
+    font-weight: 900;
+
+    letter-spacing: .02em;
+
+    color: #ffb82e;
+
+    text-shadow:
+        0 5px 25px rgba(0,0,0,.35);
 }
+
 
 .subtitle {
-  text-align: center;
-  font-size: clamp(13px, 1.8vw, 21px);
-  letter-spacing: .16em;
-  margin: 5px 0 34px;
+    text-align: center;
+
+    font-size: clamp(13px,1.8vw,21px);
+
+    letter-spacing: .16em;
+
+    margin: 5px 0 34px;
 }
+
 
 .start {
-  text-align: center;
-  color: #ffb82e;
-  font-weight: 700;
-  letter-spacing: .18em;
-  font-size: clamp(14px, 2vw, 21px);
+    text-align: center;
+
+    color: #ffb82e;
+
+    font-weight: 700;
+
+    letter-spacing: .18em;
+
+    font-size: clamp(14px,2vw,21px);
 }
+
 
 .date {
-  text-align: center;
-  font-size: clamp(30px, 5vw, 62px);
-  font-weight: 800;
-  margin: 10px 0 26px;
+    text-align: center;
+
+    font-size: clamp(30px,5vw,62px);
+
+    font-weight: 800;
+
+    margin: 10px 0 26px;
 }
+
+
+/* COUNTDOWN */
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
 }
+
 
 .box {
-  background: rgba(5,12,19,.72);
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 17px;
-  padding: 20px 10px;
-  text-align: center;
+    background:
+        rgba(5,12,19,.72);
+
+    border:
+        1px solid rgba(255,255,255,.25);
+
+    border-radius: 17px;
+
+    padding: 20px 10px;
+
+    text-align: center;
 }
+
 
 .num {
-  font-size: clamp(42px, 7vw, 78px);
-  font-weight: 900;
-  line-height: 1;
+    font-size: clamp(42px,7vw,78px);
+
+    font-weight: 900;
+
+    line-height: 1;
 }
+
 
 .label {
-  margin-top: 9px;
-  color: #ffb82e;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: .15em;
+    margin-top: 9px;
+
+    color: #ffb82e;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: .15em;
 }
+
+
+/* TODAY */
 
 .today {
-  width: max-content;
-  max-width: 100%;
-  margin: 20px auto 0;
-  padding: 11px 20px;
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 999px;
-  background: rgba(0,0,0,.35);
-  font-size: clamp(13px,1.7vw,18px);
-  letter-spacing: .08em;
+    width: max-content;
+
+    max-width: 100%;
+
+    margin: 20px auto 0;
+
+    padding: 11px 20px;
+
+    border:
+        1px solid rgba(255,255,255,.25);
+
+    border-radius: 999px;
+
+    background:
+        rgba(0,0,0,.35);
+
+    font-size:
+        clamp(13px,1.7vw,18px);
+
+    letter-spacing: .08em;
 }
+
 
 .today b {
-  color: #ffb82e;
+    color: #ffb82e;
 }
+
+
+/* MESSAGE */
 
 .message {
-  text-align: center;
-  font-size: clamp(20px,3vw,34px);
-  font-style: italic;
-  margin: 24px 0 12px;
+    text-align: center;
+
+    font-size:
+        clamp(20px,3vw,34px);
+
+    font-style: italic;
+
+    margin: 24px 0 12px;
 }
+
 
 .footer {
-  text-align: center;
-  font-size: 12px;
-  letter-spacing: .18em;
-  opacity: .85;
+    text-align: center;
+
+    font-size: 12px;
+
+    letter-spacing: .18em;
+
+    opacity: .85;
 }
+
 
 /* MUSIC BUTTON */
+
 #musicButton {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
 
-  padding: 13px 22px;
-  border: 1px solid rgba(255,255,255,.35);
-  border-radius: 999px;
+    position: fixed;
 
-  background: rgba(0,0,0,.65);
-  color: white;
+    right: 20px;
 
-  font-size: 15px;
-  font-weight: bold;
+    bottom: 20px;
 
-  cursor: pointer;
+    z-index: 9999;
 
-  backdrop-filter: blur(10px);
+    padding:
+        13px 22px;
 
-  box-shadow: 0 5px 20px rgba(0,0,0,.3);
+    border:
+        1px solid rgba(255,255,255,.35);
 
-  transition: transform .2s, background .2s;
+    border-radius: 999px;
+
+    background:
+        rgba(0,0,0,.75);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.4);
+
+    transition:
+        transform .2s,
+        background .2s;
 }
+
 
 #musicButton:hover {
-  transform: scale(1.08);
-  background: rgba(255,184,46,.85);
-  color: #07121e;
+
+    transform:
+        scale(1.08);
+
+    background:
+        #ffb82e;
+
+    color:
+        #07121e;
 }
+
+
+/* MOBILE */
 
 @media(max-width:700px) {
-  .card {
-    padding: 22px 16px;
-    border-radius: 20px;
-  }
 
-  .grid {
-    grid-template-columns: repeat(2,1fr);
-  }
+    .card {
 
-  .date {
-    margin-bottom: 18px;
-  }
+        padding:
+            22px 16px;
 
-  #musicButton {
-    bottom: 12px;
-    right: 12px;
-    padding: 10px 16px;
-    font-size: 13px;
-  }
+        border-radius:
+            20px;
+    }
+
+
+    .grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+
+    #musicButton {
+
+        right: 12px;
+
+        bottom: 12px;
+
+        padding:
+            10px 16px;
+
+        font-size: 13px;
+    }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- BACKGROUND MUSIC -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="Tame Impala - Loser - LatinHype.mp3" type="audio/mpeg">
+
+<!-- ==========================
+     BACKGROUND MUSIC
+=========================== -->
+
+<audio
+    id="bgMusic"
+    preload="auto"
+    loop>
+
+    <source
+        src="Tame%20Impala%20-%20Loser%20-%20LatinHype.mp3"
+        type="audio/mpeg">
+
 </audio>
 
-<!-- MUSIC BUTTON -->
-<button id="musicButton">🎵 Play Music</button>
 
+<!-- MUSIC BUTTON -->
+
+<button
+    id="musicButton"
+    type="button">
+
+    🎵 Play Music
+
+</button>
+
+
+
+<!-- ==========================
+     MAIN CONTENT
+=========================== -->
 
 <main class="card">
 
-  <div class="kicker">TRACK YOUR</div>
 
-  <div class="title">FUN TRIP</div>
-
-  <div class="subtitle">
-    ADVENTURE AWAITS · MEMORIES FOREVER
-  </div>
-
-  <div class="start">
-    TRIP STARTS ON
-  </div>
-
-  <div class="date">
-    29 SEPTEMBER
-  </div>
-
-  <section class="grid" aria-label="Countdown">
-
-    <div class="box">
-      <div class="num" id="days">--</div>
-      <div class="label">DAYS</div>
+    <div class="kicker">
+        TRACK YOUR
     </div>
 
-    <div class="box">
-      <div class="num" id="hours">--</div>
-      <div class="label">HOURS</div>
+
+    <div class="title">
+        FUN TRIP
     </div>
 
-    <div class="box">
-      <div class="num" id="minutes">--</div>
-      <div class="label">MINUTES</div>
+
+    <div class="subtitle">
+        ADVENTURE AWAITS · MEMORIES FOREVER
     </div>
 
-    <div class="box">
-      <div class="num" id="seconds">--</div>
-      <div class="label">SECONDS</div>
+
+    <div class="start">
+        TRIP STARTS ON
     </div>
 
-  </section>
 
-  <div class="today">
-    TODAY IS <b id="today">17 AUGUST 2026</b>
-  </div>
+    <div class="date">
+        29 SEPTEMBER
+    </div>
 
-  <div class="message">
-    Let the adventure begin!
-  </div>
 
-  <div class="footer">
-    EXPLORE &nbsp; · &nbsp;
-    CAPTURE &nbsp; · &nbsp;
-    EXPERIENCE &nbsp; · &nbsp;
-    DISCOVER &nbsp; · &nbsp;
-    ENJOY
-  </div>
+
+    <!-- COUNTDOWN -->
+
+    <section
+        class="grid"
+        aria-label="Countdown">
+
+
+        <div class="box">
+
+            <div
+                class="num"
+                id="days">
+
+                00
+
+            </div>
+
+            <div class="label">
+                DAYS
+            </div>
+
+        </div>
+
+
+
+        <div class="box">
+
+            <div
+                class="num"
+                id="hours">
+
+                00
+
+            </div>
+
+            <div class="label">
+                HOURS
+            </div>
+
+        </div>
+
+
+
+        <div class="box">
+
+            <div
+                class="num"
+                id="minutes">
+
+                00
+
+            </div>
+
+            <div class="label">
+                MINUTES
+            </div>
+
+        </div>
+
+
+
+        <div class="box">
+
+            <div
+                class="num"
+                id="seconds">
+
+                00
+
+            </div>
+
+            <div class="label">
+                SECONDS
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- TODAY -->
+
+    <div class="today">
+
+        TODAY IS
+
+        <b id="today">
+            --
+        </b>
+
+    </div>
+
+
+
+    <div class="message">
+        Let the adventure begin!
+    </div>
+
+
+
+    <div class="footer">
+
+        EXPLORE
+        &nbsp; · &nbsp;
+
+        CAPTURE
+        &nbsp; · &nbsp;
+
+        EXPERIENCE
+        &nbsp; · &nbsp;
+
+        DISCOVER
+        &nbsp; · &nbsp;
+
+        ENJOY
+
+    </div>
+
 
 </main>
 
 
+
 <script>
 
-/* =========================
-   COUNTDOWN
-========================= */
 
-const target = new Date("2026-09-29T00:00:00+05:30");
+/* =================================
+   COUNTDOWN
+================================= */
+
+
+/*
+   Trip date:
+   29 September 2026
+   Midnight IST
+*/
+
+const targetDate =
+    new Date(
+        "2026-09-29T00:00:00+05:30"
+    );
+
 
 function updateCountdown() {
 
-  const now = new Date();
 
-  let diff = target - now;
-
-  if (diff <= 0) {
-
-    document.querySelector(".date").textContent =
-      "🎉 THE TRIP HAS BEGUN! 🎉";
-
-    document.querySelector(".message").textContent =
-      "Adventure time! 🚀✈️🏖️";
-
-    ["days", "hours", "minutes", "seconds"].forEach(id => {
-      document.getElementById(id).textContent = "00";
-    });
-
-    return;
-  }
-
-  const days = Math.floor(diff / 86400000);
-
-  diff %= 86400000;
-
-  const hours = Math.floor(diff / 3600000);
-
-  diff %= 3600000;
-
-  const minutes = Math.floor(diff / 60000);
-
-  const seconds = Math.floor((diff % 60000) / 1000);
+    const now =
+        new Date();
 
 
-  document.getElementById("days").textContent =
-    String(days).padStart(2, "0");
-
-  document.getElementById("hours").textContent =
-    String(hours).padStart(2, "0");
-
-  document.getElementById("minutes").textContent =
-    String(minutes).padStart(2, "0");
-
-  document.getElementById("seconds").textContent =
-    String(seconds).padStart(2, "0");
+    const difference =
+        targetDate.getTime()
+        -
+        now.getTime();
 
 
-  const formattedDate = new Intl.DateTimeFormat("en-IN", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    timeZone: "Asia/Kolkata"
-  }).format(now).toUpperCase();
 
-  document.getElementById("today").textContent =
-    formattedDate;
+    /* TRIP HAS STARTED */
+
+    if (difference <= 0) {
+
+
+        document.getElementById(
+            "days"
+        ).textContent = "00";
+
+
+        document.getElementById(
+            "hours"
+        ).textContent = "00";
+
+
+        document.getElementById(
+            "minutes"
+        ).textContent = "00";
+
+
+        document.getElementById(
+            "seconds"
+        ).textContent = "00";
+
+
+        document.querySelector(
+            ".date"
+        ).textContent =
+            "🎉 THE TRIP HAS BEGUN! 🎉";
+
+
+        document.querySelector(
+            ".message"
+        ).textContent =
+            "Adventure time! 🚀✈️🏖️";
+
+
+    }
+
+
+    /* COUNTDOWN IS STILL RUNNING */
+
+    else {
+
+
+        const days =
+            Math.floor(
+                difference /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        const hours =
+            Math.floor(
+                (
+                    difference /
+                    (1000 * 60 * 60)
+                ) % 24
+            );
+
+
+        const minutes =
+            Math.floor(
+                (
+                    difference /
+                    (1000 * 60)
+                ) % 60
+            );
+
+
+        const seconds =
+            Math.floor(
+                (
+                    difference /
+                    1000
+                ) % 60
+            );
+
+
+
+        document.getElementById(
+            "days"
+        ).textContent =
+            String(days)
+            .padStart(2,"0");
+
+
+        document.getElementById(
+            "hours"
+        ).textContent =
+            String(hours)
+            .padStart(2,"0");
+
+
+        document.getElementById(
+            "minutes"
+        ).textContent =
+            String(minutes)
+            .padStart(2,"0");
+
+
+        document.getElementById(
+            "seconds"
+        ).textContent =
+            String(seconds)
+            .padStart(2,"0");
+
+    }
+
+
+
+    /* TODAY'S DATE */
+
+    const today =
+        new Intl.DateTimeFormat(
+            "en-IN",
+            {
+                day: "2-digit",
+
+                month: "long",
+
+                year: "numeric",
+
+                timeZone:
+                    "Asia/Kolkata"
+            }
+        ).format(now);
+
+
+    document.getElementById(
+        "today"
+    ).textContent =
+        today.toUpperCase();
+
 }
 
 
-/* =========================
+
+/* =================================
    MUSIC
-========================= */
-
-const bgMusic = document.getElementById("bgMusic");
-const musicButton = document.getElementById("musicButton");
-
-let musicPlaying = false;
+================================= */
 
 
-musicButton.addEventListener("click", function() {
-
-  if (musicPlaying) {
-
-    bgMusic.pause();
-
-    musicButton.textContent = "🎵 Play Music";
-
-    musicPlaying = false;
-
-  } else {
-
-    bgMusic.play()
-      .then(() => {
-
-        musicButton.textContent = "🔊 Music On";
-
-        musicPlaying = true;
-
-      })
-      .catch(error => {
-
-        console.log("Music could not play:", error);
-
-      });
-
-  }
-
-});
+const music =
+    document.getElementById(
+        "bgMusic"
+    );
 
 
-/* =========================
-   START COUNTDOWN
-========================= */
+const musicButton =
+    document.getElementById(
+        "musicButton"
+    );
+
+
+
+musicButton.addEventListener(
+    "click",
+    function() {
+
+
+        if (music.paused) {
+
+
+            music.play()
+                .then(function() {
+
+
+                    musicButton.textContent =
+                        "🔊 Music On";
+
+
+                })
+                .catch(function(error) {
+
+
+                    console.log(
+                        "Music could not play:",
+                        error
+                    );
+
+
+                    musicButton.textContent =
+                        "❌ Music Not Found";
+
+
+                });
+
+
+        }
+
+
+        else {
+
+
+            music.pause();
+
+
+            musicButton.textContent =
+                "🎵 Play Music";
+
+        }
+
+
+    }
+);
+
+
+
+/* =================================
+   START
+================================= */
+
 
 updateCountdown();
 
-setInterval(updateCountdown, 1000);
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
 
 </script>
 
 </body>
 </html>
+```
