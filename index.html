@@ -4,184 +4,394 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fun Trip Countdown</title>
+
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;font-family:Arial,Helvetica,sans-serif;color:#fff}
-body{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  background:#07121e url("trip-background.png") center/cover no-repeat fixed;
-  overflow:hidden;
+* {
+  box-sizing: border-box;
 }
-body:before{
-  content:"";position:fixed;inset:0;
-  background:linear-gradient(180deg,rgba(2,10,18,.32),rgba(2,10,18,.68));
-  z-index:0;
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
 }
-.card{
-  position:relative;z-index:1;width:min(1200px,94vw);padding:clamp(24px,4vw,54px);
-  border:1px solid rgba(255,255,255,.42);border-radius:28px;
-  background:rgba(4,12,21,.34);backdrop-filter:blur(5px);
-  box-shadow:0 30px 80px rgba(0,0,0,.35);
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #07121e url("trip-background.png") center/cover no-repeat fixed;
+  overflow: hidden;
 }
-.kicker{font-size:clamp(14px,2vw,22px);letter-spacing:.34em;text-align:center}
-.title{
-  margin:8px 0 0;text-align:center;font-size:clamp(48px,8vw,104px);
-  font-weight:900;letter-spacing:.02em;color:#ffb82e;
-  text-shadow:0 5px 25px rgba(0,0,0,.35);
+
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(2,10,18,.32),
+    rgba(2,10,18,.68)
+  );
+  z-index: 0;
 }
-.subtitle{text-align:center;font-size:clamp(13px,1.8vw,21px);letter-spacing:.16em;margin:5px 0 34px}
-.start{text-align:center;color:#ffb82e;font-weight:700;letter-spacing:.18em;font-size:clamp(14px,2vw,21px)}
-.date{text-align:center;font-size:clamp(30px,5vw,62px);font-weight:800;margin:10px 0 26px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.box{
-  background:rgba(5,12,19,.72);border:1px solid rgba(255,255,255,.25);
-  border-radius:17px;padding:20px 10px;text-align:center;
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, 94vw);
+  padding: clamp(24px, 4vw, 54px);
+  border: 1px solid rgba(255,255,255,.42);
+  border-radius: 28px;
+  background: rgba(4,12,21,.34);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 30px 80px rgba(0,0,0,.35);
 }
-.num{font-size:clamp(42px,7vw,78px);font-weight:900;line-height:1}
-.label{margin-top:9px;color:#ffb82e;font-size:13px;font-weight:800;letter-spacing:.15em}
-.today{
-  width:max-content;max-width:100%;margin:20px auto 0;padding:11px 20px;
-  border:1px solid rgba(255,255,255,.25);border-radius:999px;
-  background:rgba(0,0,0,.35);font-size:clamp(13px,1.7vw,18px);letter-spacing:.08em;
+
+.kicker {
+  font-size: clamp(14px, 2vw, 22px);
+  letter-spacing: .34em;
+  text-align: center;
 }
-.today b{color:#ffb82e}
-.message{text-align:center;font-size:clamp(20px,3vw,34px);font-style:italic;margin:24px 0 12px}
-.footer{text-align:center;font-size:12px;letter-spacing:.18em;opacity:.85}
-@media(max-width:700px){
-  .card{padding:22px 16px;border-radius:20px}
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .date{margin-bottom:18px}
+
+.title {
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: clamp(48px, 8vw, 104px);
+  font-weight: 900;
+  letter-spacing: .02em;
+  color: #ffb82e;
+  text-shadow: 0 5px 25px rgba(0,0,0,.35);
 }
-  #musicButton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 30px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    z-index: 1000;
+
+.subtitle {
+  text-align: center;
+  font-size: clamp(13px, 1.8vw, 21px);
+  letter-spacing: .16em;
+  margin: 5px 0 34px;
+}
+
+.start {
+  text-align: center;
+  color: #ffb82e;
+  font-weight: 700;
+  letter-spacing: .18em;
+  font-size: clamp(14px, 2vw, 21px);
+}
+
+.date {
+  text-align: center;
+  font-size: clamp(30px, 5vw, 62px);
+  font-weight: 800;
+  margin: 10px 0 26px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.box {
+  background: rgba(5,12,19,.72);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 17px;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.num {
+  font-size: clamp(42px, 7vw, 78px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.label {
+  margin-top: 9px;
+  color: #ffb82e;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+.today {
+  width: max-content;
+  max-width: 100%;
+  margin: 20px auto 0;
+  padding: 11px 20px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  background: rgba(0,0,0,.35);
+  font-size: clamp(13px,1.7vw,18px);
+  letter-spacing: .08em;
+}
+
+.today b {
+  color: #ffb82e;
+}
+
+.message {
+  text-align: center;
+  font-size: clamp(20px,3vw,34px);
+  font-style: italic;
+  margin: 24px 0 12px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: .18em;
+  opacity: .85;
+}
+
+/* MUSIC BUTTON */
+#musicButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+
+  padding: 13px 22px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 999px;
+
+  background: rgba(0,0,0,.65);
+  color: white;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 5px 20px rgba(0,0,0,.3);
+
+  transition: transform .2s, background .2s;
 }
 
 #musicButton:hover {
-    transform: scale(1.05);
+  transform: scale(1.08);
+  background: rgba(255,184,46,.85);
+  color: #07121e;
+}
+
+@media(max-width:700px) {
+  .card {
+    padding: 22px 16px;
+    border-radius: 20px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .date {
+    margin-bottom: 18px;
+  }
+
+  #musicButton {
+    bottom: 12px;
+    right: 12px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
 }
 </style>
 </head>
+
 <body>
-  <audio id="bgMusic" loop>
-    <source src="Tame Impala - Loser - LatinHype.mp3" type="audio/mpeg">
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="Tame Impala - Loser - LatinHype.mp3" type="audio/mpeg">
 </audio>
 
-<button id="musicButton" onclick="toggleMusic()">🎵 Play Music</button>
-<main class="card">
-  <div class="kicker">TRACK YOUR</div>
-  <div class="title">FUN TRIP</div>
-  <div class="subtitle">ADVENTURE AWAITS · MEMORIES FOREVER</div>
+<!-- MUSIC BUTTON -->
+<button id="musicButton">🎵 Play Music</button>
 
-  <div class="start">TRIP STARTS ON</div>
-  <div class="date">29 SEPTEMBER</div>
+
+<main class="card">
+
+  <div class="kicker">TRACK YOUR</div>
+
+  <div class="title">FUN TRIP</div>
+
+  <div class="subtitle">
+    ADVENTURE AWAITS · MEMORIES FOREVER
+  </div>
+
+  <div class="start">
+    TRIP STARTS ON
+  </div>
+
+  <div class="date">
+    29 SEPTEMBER
+  </div>
 
   <section class="grid" aria-label="Countdown">
-    <div class="box"><div class="num" id="days">--</div><div class="label">DAYS</div></div>
-    <div class="box"><div class="num" id="hours">--</div><div class="label">HOURS</div></div>
-    <div class="box"><div class="num" id="minutes">--</div><div class="label">MINUTES</div></div>
-    <div class="box"><div class="num" id="seconds">--</div><div class="label">SECONDS</div></div>
+
+    <div class="box">
+      <div class="num" id="days">--</div>
+      <div class="label">DAYS</div>
+    </div>
+
+    <div class="box">
+      <div class="num" id="hours">--</div>
+      <div class="label">HOURS</div>
+    </div>
+
+    <div class="box">
+      <div class="num" id="minutes">--</div>
+      <div class="label">MINUTES</div>
+    </div>
+
+    <div class="box">
+      <div class="num" id="seconds">--</div>
+      <div class="label">SECONDS</div>
+    </div>
+
   </section>
 
-  <div class="today">TODAY IS <b id="today">17 AUGUST 2026</b></div>
-  <div class="message">Let the adventure begin!</div>
-  <div class="footer">EXPLORE &nbsp; · &nbsp; CAPTURE &nbsp; · &nbsp; EXPERIENCE &nbsp; · &nbsp; DISCOVER &nbsp; · &nbsp; ENJOY</div>
+  <div class="today">
+    TODAY IS <b id="today">17 AUGUST 2026</b>
+  </div>
+
+  <div class="message">
+    Let the adventure begin!
+  </div>
+
+  <div class="footer">
+    EXPLORE &nbsp; · &nbsp;
+    CAPTURE &nbsp; · &nbsp;
+    EXPERIENCE &nbsp; · &nbsp;
+    DISCOVER &nbsp; · &nbsp;
+    ENJOY
+  </div>
+
 </main>
 
-<!-- Audio Elements -->
-<audio id="bgMusic" loop preload="auto" muted>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
-</audio>
-<audio id="tripSound" preload="auto">
-  <source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg">
-</audio>
 
 <script>
+
+/* =========================
+   COUNTDOWN
+========================= */
+
 const target = new Date("2026-09-29T00:00:00+05:30");
-const bgMusic = document.getElementById("bgMusic");
-const tripSound = document.getElementById("tripSound");
-let isTripped = false;
-let musicStarted = false;
 
-// Start music on first user interaction
-function startMusic() {
-  if (!musicStarted) {
-    bgMusic.muted = false;
-    bgMusic.play().catch(e => console.log("Music play failed:", e));
-    musicStarted = true;
-  }
-}
+function updateCountdown() {
 
-// Add multiple event listeners for better coverage
-["click", "touchstart", "keydown"].forEach(event => {
-  document.addEventListener(event, startMusic, { once: true });
-});
-
-// Also try to autoplay with muted first
-bgMusic.play().catch(e => console.log("Initial play attempt failed:", e));
-
-function updateCountdown(){
   const now = new Date();
+
   let diff = target - now;
 
-  if(diff <= 0){
-    if (!isTripped) {
-      // Trip has begun - switch to trip sound
-      bgMusic.pause();
-      tripSound.muted = false;
-      tripSound.play().catch(e => console.log("Trip sound play failed:", e));
-      isTripped = true;
-      
-      // Show celebration
-      document.querySelector(".date").textContent = "🎉 THE TRIP HAS BEGUN! 🎉";
-      document.querySelector(".message").textContent = "Adventure time! 🚀✈️🏖️";
-    }
-    ["days","hours","minutes","seconds"].forEach(id => document.getElementById(id).textContent = "00");
+  if (diff <= 0) {
+
+    document.querySelector(".date").textContent =
+      "🎉 THE TRIP HAS BEGUN! 🎉";
+
+    document.querySelector(".message").textContent =
+      "Adventure time! 🚀✈️🏖️";
+
+    ["days", "hours", "minutes", "seconds"].forEach(id => {
+      document.getElementById(id).textContent = "00";
+    });
+
     return;
   }
 
   const days = Math.floor(diff / 86400000);
+
   diff %= 86400000;
+
   const hours = Math.floor(diff / 3600000);
+
   diff %= 3600000;
+
   const minutes = Math.floor(diff / 60000);
+
   const seconds = Math.floor((diff % 60000) / 1000);
 
-  document.getElementById("days").textContent = String(days).padStart(2,"0");
-  document.getElementById("hours").textContent = String(hours).padStart(2,"0");
-  document.getElementById("minutes").textContent = String(minutes).padStart(2,"0");
-  document.getElementById("seconds").textContent = String(seconds).padStart(2,"0");
 
-  const d = new Intl.DateTimeFormat("en-IN", {
-    day:"2-digit", month:"long", year:"numeric", timeZone:"Asia/Kolkata"
+  document.getElementById("days").textContent =
+    String(days).padStart(2, "0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2, "0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2, "0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2, "0");
+
+
+  const formattedDate = new Intl.DateTimeFormat("en-IN", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    timeZone: "Asia/Kolkata"
   }).format(now).toUpperCase();
-  document.getElementById("today").textContent = d;
+
+  document.getElementById("today").textContent =
+    formattedDate;
 }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
-  const bgMusic = document.getElementById("bgMusic");
+
+/* =========================
+   MUSIC
+========================= */
+
+const bgMusic = document.getElementById("bgMusic");
 const musicButton = document.getElementById("musicButton");
 
-function toggleMusic() {
-    if (bgMusic.paused) {
-        bgMusic.play();
+let musicPlaying = false;
+
+
+musicButton.addEventListener("click", function() {
+
+  if (musicPlaying) {
+
+    bgMusic.pause();
+
+    musicButton.textContent = "🎵 Play Music";
+
+    musicPlaying = false;
+
+  } else {
+
+    bgMusic.play()
+      .then(() => {
+
         musicButton.textContent = "🔊 Music On";
-    } else {
-        bgMusic.pause();
-        musicButton.textContent = "🔇 Music Off";
-    }
-}
+
+        musicPlaying = true;
+
+      })
+      .catch(error => {
+
+        console.log("Music could not play:", error);
+
+      });
+
+  }
+
+});
+
+
+/* =========================
+   START COUNTDOWN
+========================= */
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
+
 </script>
+
 </body>
 </html>
