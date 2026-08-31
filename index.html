@@ -1,180 +1,636 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fun Trip Countdown</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#050a12">
+
+<title>
+KENSRI SCHOOL | Class VIII Hyderabad Trip
+</title>
+
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #050a12;
+
+    color: white;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
 
     background:
-        radial-gradient(circle at 15% 20%, rgba(255, 93, 162, .55), transparent 32%),
-        radial-gradient(circle at 85% 15%, rgba(84, 182, 255, .52), transparent 30%),
-        radial-gradient(circle at 75% 85%, rgba(156, 92, 255, .58), transparent 34%),
-        linear-gradient(135deg, #07121e 0%, #172b55 35%, #4b246f 68%, #11152e 100%);
+
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,93,162,.38),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(84,182,255,.38),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 75% 85%,
+            rgba(156,92,255,.42),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            135deg,
+            #07121e 0%,
+            #172b55 35%,
+            #4b246f 68%,
+            #11152e 100%
+        );
+
+    z-index: -3;
+}
+
+
+body {
+
+    background-size:
+        180% 180%;
+
+    animation:
+        gradientFlow 14s ease infinite;
+}
+
+
+@keyframes gradientFlow {
+
+    0%,100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+
+/* =========================
+   STARS
+========================= */
+
+.stars {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -2;
+}
+
+
+.star {
+
+    position: absolute;
+
+    width: 2px;
+
+    height: 2px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    opacity: .6;
+
+    animation:
+        twinkle 3s infinite ease-in-out;
+}
+
+
+@keyframes twinkle {
+
+    0%,100% {
+        opacity: .2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    padding:
+        25px 6%;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    z-index: 20;
+}
+
+
+.school-name {
+
+    font-size:
+        clamp(16px,2vw,22px);
+
+    font-weight: 900;
+
+    letter-spacing:
+        .18em;
+}
+
+
+.school-name span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 10px;
+
+    letter-spacing:
+        .35em;
+
+    opacity: .55;
+}
+
+
+.menu {
+
+    display: flex;
+
+    gap: 28px;
+}
+
+
+.menu a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    opacity: .7;
+
+    transition: .3s;
+}
+
+
+.menu a:hover {
+
+    opacity: 1;
+
+    color: #61c7ff;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding:
+        110px 20px 90px;
 
     overflow: hidden;
 }
 
 
-/* DARK OVERLAY */
+.hero-content {
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
+    max-width: 1100px;
+
+    width: 100%;
+
+    z-index: 5;
+}
+
+
+.eyebrow {
+
+    color: #61c7ff;
+
+    letter-spacing:
+        6px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+}
+
+
+.hero h1 {
+
+    font-size:
+        clamp(60px,15vw,180px);
+
+    line-height: .8;
+
+    letter-spacing:
+        -7px;
+
+    margin-bottom: 28px;
 
     background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.12), transparent 38%),
-        linear-gradient(180deg, rgba(7, 18, 45, .10), rgba(9, 8, 28, .42));
+        linear-gradient(
+            180deg,
+            white,
+            #7ecfff
+        );
 
-    z-index: 0;
+    -webkit-background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+    animation:
+        titleIn 1.2s ease;
 }
 
 
-/* MAIN CARD */
+@keyframes titleIn {
 
-.card {
-    position: relative;
-    z-index: 1;
+    from {
 
-    width: min(1200px, 94vw);
+        opacity: 0;
 
-    padding: clamp(24px, 4vw, 54px);
+        transform:
+            scale(.8);
+    }
 
-    border: 1px solid rgba(255,255,255,.42);
+    to {
 
-    border-radius: 28px;
+        opacity: 1;
 
-    background:
-        linear-gradient(135deg,
-            rgba(255,255,255,.14),
-            rgba(255,255,255,.05) 45%,
-            rgba(150,90,255,.10));
-
-    backdrop-filter: blur(5px);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.35),
-        0 0 90px rgba(139, 92, 246, .20);
-}
-
-
-/* TEXT */
-
-.kicker {
-    font-size: clamp(14px,2vw,22px);
-
-    letter-spacing: .34em;
-
-    text-align: center;
-}
-
-
-.title {
-    margin: 8px 0 0;
-
-    text-align: center;
-
-    font-size: clamp(48px,8vw,104px);
-
-    font-weight: 900;
-
-    letter-spacing: .02em;
-
-    color: #ffb82e;
-
-    text-shadow:
-        0 5px 25px rgba(0,0,0,.35);
+        transform:
+            scale(1);
+    }
 }
 
 
 .subtitle {
-    text-align: center;
 
-    font-size: clamp(13px,1.8vw,21px);
+    font-size:
+        clamp(14px,2vw,22px);
 
-    letter-spacing: .16em;
+    letter-spacing:
+        5px;
 
-    margin: 5px 0 34px;
+    opacity: .75;
+
+    margin-bottom: 40px;
 }
 
 
-.start {
-    text-align: center;
+/* =========================
+   ROUTE
+========================= */
 
-    color: #ffb82e;
+.route {
 
-    font-weight: 700;
+    max-width: 900px;
 
-    letter-spacing: .18em;
-
-    font-size: clamp(14px,2vw,21px);
+    margin:
+        0 auto 40px;
 }
 
 
-.date {
-    text-align: center;
+.route-labels {
 
-    font-size: clamp(30px,5vw,62px);
+    display: flex;
+
+    justify-content:
+        space-between;
 
     font-weight: 800;
 
-    margin: 10px 0 26px;
+    font-size: 15px;
 }
 
 
-/* COUNTDOWN */
+.route-line {
 
-.grid {
+    height: 4px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    margin:
+        25px 0;
+
+    position: relative;
+
+    border-radius: 20px;
+}
+
+
+.route-line::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 50%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #61c7ff,
+            white
+        );
+
+    box-shadow:
+        0 0 20px #61c7ff;
+}
+
+
+.station {
+
+    width: 17px;
+
+    height: 17px;
+
+    background: #06101c;
+
+    border:
+        3px solid #61c7ff;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: -7px;
+}
+
+
+.station.start {
+    left: 0;
+}
+
+
+.station.end {
+    right: 0;
+}
+
+
+/* =========================
+   TRAIN
+========================= */
+
+.train-track {
+
+    position: absolute;
+
+    bottom: 10%;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 90px;
+
+    overflow: hidden;
+
+    opacity: .9;
+}
+
+
+.track {
+
+    position: absolute;
+
+    bottom: 15px;
+
+    width: 100%;
+
+    height: 5px;
+
+    background: #4d5661;
+}
+
+
+.sleepers {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 25px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 30px,
+            #606a76 31px 39px
+        );
+}
+
+
+.train {
+
+    position: absolute;
+
+    bottom: 24px;
+
+    left: -300px;
+
+    font-size: 70px;
+
+    animation:
+        trainMove 13s linear infinite;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(80,190,255,.6)
+        );
+}
+
+
+@keyframes trainMove {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform:
+            translateX(
+                calc(100vw + 350px)
+            );
+    }
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown-section {
+
+    padding:
+        110px 6%;
+
+    text-align: center;
+
+    background:
+        rgba(255,255,255,.015);
+}
+
+
+.section-title {
+
+    font-size: 13px;
+
+    letter-spacing:
+        5px;
+
+    color: #61c7ff;
+
+    margin-bottom: 15px;
+}
+
+
+.countdown-section h2 {
+
+    font-size:
+        clamp(30px,5vw,60px);
+
+    margin-bottom: 50px;
+}
+
+
+.countdown {
+
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(4,1fr);
 
-    gap: 14px;
+    gap: 18px;
+
+    max-width: 1000px;
+
+    margin: auto;
 }
 
 
-.box {
+.time-box {
+
+    padding:
+        35px 15px;
+
     background:
-        linear-gradient(145deg,
+        linear-gradient(
+            145deg,
             rgba(255,255,255,.12),
-            rgba(30,25,65,.48));
+            rgba(30,25,65,.48)
+        );
 
     border:
-        1px solid rgba(255,255,255,.25);
+        1px solid
+        rgba(255,255,255,.18);
 
-    border-radius: 17px;
+    border-radius: 20px;
 
-    padding: 20px 10px;
+    backdrop-filter:
+        blur(15px);
 
-    text-align: center;
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,.12);
 }
 
 
-.num {
-    font-size: clamp(42px,7vw,78px);
+.time-number {
+
+    font-size:
+        clamp(35px,6vw,75px);
 
     font-weight: 900;
 
@@ -182,79 +638,566 @@ body::before {
 }
 
 
-.label {
-    margin-top: 9px;
+.time-label {
+
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    letter-spacing:
+        3px;
 
     color: #ffb82e;
 
-    font-size: 13px;
+    font-weight: 800;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-section {
+
+    padding:
+        90px 6%;
+
+    text-align: center;
+}
+
+
+.progress-container {
+
+    max-width: 900px;
+
+    margin:
+        40px auto;
+}
+
+
+.progress-bar {
+
+    height: 13px;
+
+    background:
+        rgba(255,255,255,.1);
+
+    border-radius: 30px;
+
+    overflow: hidden;
+}
+
+
+.progress-fill {
+
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #61c7ff,
+            #ff7ab8,
+            #9b8cff
+        );
+
+    box-shadow:
+        0 0 20px #61c7ff;
+
+    transition:
+        width 1s ease;
+}
+
+
+.progress-text {
+
+    margin-top: 15px;
+
+    opacity: .65;
+}
+
+
+/* =========================
+   JOURNEY
+========================= */
+
+.details {
+
+    padding:
+        100px 6%;
+}
+
+
+.details h2,
+.hyderabad h2,
+.suitcase-section h2 {
+
+    text-align: center;
+
+    font-size:
+        clamp(30px,5vw,60px);
+
+    margin-bottom: 50px;
+}
+
+
+.cards {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 20px;
+}
+
+
+.card {
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.05);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    transition: .3s;
+}
+
+
+.card:hover {
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(97,199,255,.5);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.3);
+}
+
+
+.card-icon {
+
+    font-size: 32px;
+
+    margin-bottom: 20px;
+}
+
+
+.card-title {
+
+    font-size: 11px;
+
+    letter-spacing:
+        3px;
+
+    opacity: .5;
+}
+
+
+.card-value {
+
+    font-size: 20px;
 
     font-weight: 800;
 
-    letter-spacing: .15em;
+    margin-top: 8px;
 }
 
 
-/* TODAY */
+/* =========================
+   SUITCASE
+========================= */
 
-.today {
-    width: max-content;
+.suitcase-section {
 
-    max-width: 100%;
+    padding:
+        110px 6%;
 
-    margin: 20px auto 0;
-
-    padding: 11px 20px;
-
-    border:
-        1px solid rgba(255,255,255,.25);
-
-    border-radius: 999px;
+    text-align: center;
 
     background:
-        linear-gradient(90deg,
-            rgba(255, 95, 162, .16),
-            rgba(88, 166, 255, .14),
-            rgba(156, 92, 255, .16));
+        rgba(255,255,255,.015);
+}
+
+
+.suitcase {
+
+    width: 270px;
+
+    height: 190px;
+
+    margin:
+        80px auto 40px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    perspective: 800px;
+}
+
+
+.case-body {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 145px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #263544,
+            #101923
+        );
+
+    border:
+        3px solid #596b7b;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 30px 60px
+        rgba(0,0,0,.5);
+
+    z-index: 2;
+}
+
+
+.case-lid {
+
+    position: absolute;
+
+    top: 20px;
+
+    width: 100%;
+
+    height: 95px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #35485a,
+            #131e29
+        );
+
+    border:
+        3px solid #596b7b;
+
+    border-radius:
+        20px 20px 10px 10px;
+
+    transform-origin: bottom;
+
+    transition:
+        transform 1s
+        cubic-bezier(.2,.8,.2,1);
+
+    z-index: 4;
+}
+
+
+.suitcase.open .case-lid {
+
+    transform:
+        rotateX(-120deg)
+        translateY(-25px);
+}
+
+
+.handle {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 90px;
+
+    width: 90px;
+
+    height: 40px;
+
+    border:
+        8px solid #778999;
+
+    border-bottom: none;
+
+    border-radius:
+        15px 15px 0 0;
+
+    z-index: 5;
+}
+
+
+.wheel {
+
+    position: absolute;
+
+    width: 25px;
+
+    height: 25px;
+
+    border-radius: 50%;
+
+    background: #080c11;
+
+    border:
+        4px solid #566575;
+
+    bottom: -13px;
+
+    z-index: 3;
+}
+
+
+.wheel.left {
+    left: 35px;
+}
+
+
+.wheel.right {
+    right: 35px;
+}
+
+
+.items {
+
+    position: absolute;
+
+    z-index: 1;
+
+    bottom: 65px;
+
+    left: 30px;
+
+    width: 210px;
+
+    display: flex;
+
+    justify-content:
+        space-around;
+
+    font-size: 30px;
+
+    transition: .7s;
+}
+
+
+.suitcase.open .items {
+
+    transform:
+        translateY(-100px);
+}
+
+
+/* =========================
+   HYDERABAD
+========================= */
+
+.hyderabad {
+
+    padding:
+        110px 6%;
+
+    text-align: center;
+}
+
+
+.city-card {
+
+    max-width: 1100px;
+
+    min-height: 430px;
+
+    margin: auto;
+
+    border-radius: 35px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.05),
+            rgba(0,0,0,.8)
+        ),
+
+        url(
+            "https://images.unsplash.com/photo-1572445271230-a78b5944a659?auto=format&fit=crop&w=1600&q=80"
+        )
+
+        center/cover;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    padding: 60px 20px;
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.5);
+}
+
+
+.city-card h3 {
 
     font-size:
-        clamp(13px,1.7vw,18px);
+        clamp(45px,8vw,100px);
 
-    letter-spacing: .08em;
+    line-height: .9;
 }
 
 
-.today b {
-    color: #ffb82e;
+.city-card p {
+
+    margin-top: 20px;
+
+    letter-spacing:
+        5px;
+
+    opacity: .8;
 }
 
 
-/* MESSAGE */
+/* =========================
+   CLASS SECTION
+========================= */
 
-.message {
+.class-section {
+
+    padding:
+        120px 20px;
+
     text-align: center;
+}
+
+
+.class-section h2 {
 
     font-size:
-        clamp(20px,3vw,34px);
+        clamp(35px,7vw,90px);
 
-    font-style: italic;
-
-    margin: 24px 0 12px;
+    line-height: .95;
 }
 
 
-.footer {
+.class-section p {
+
+    margin-top: 30px;
+
+    letter-spacing:
+        4px;
+
+    opacity: .55;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.final {
+
+    min-height: 80vh;
+
+    display: grid;
+
+    place-items: center;
+
     text-align: center;
+
+    padding:
+        80px 20px;
+}
+
+
+.final-inner {
+
+    max-width: 900px;
+}
+
+
+.final h2 {
+
+    font-size:
+        clamp(50px,10vw,130px);
+
+    line-height: .85;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff,
+            #61c7ff
+        );
+
+    -webkit-background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+}
+
+
+.final p {
+
+    margin-top: 30px;
+
+    font-size: 18px;
+
+    letter-spacing:
+        5px;
+
+    opacity: .7;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    padding: 35px;
+
+    text-align: center;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+    opacity: .5;
 
     font-size: 12px;
 
-    letter-spacing: .18em;
-
-    opacity: .85;
+    letter-spacing:
+        2px;
 }
 
 
-/* MUSIC BUTTON */
+/* =========================
+   MUSIC BUTTON
+========================= */
 
 #musicButton {
 
@@ -270,7 +1213,8 @@ body::before {
         13px 22px;
 
     border:
-        1px solid rgba(255,255,255,.35);
+        1px solid
+        rgba(255,255,255,.35);
 
     border-radius: 999px;
 
@@ -286,7 +1230,8 @@ body::before {
     cursor: pointer;
 
     box-shadow:
-        0 5px 20px rgba(0,0,0,.4);
+        0 5px 20px
+        rgba(0,0,0,.4);
 
     transition:
         transform .2s,
@@ -307,24 +1252,63 @@ body::before {
 }
 
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px) {
 
-    .card {
+    header {
 
         padding:
-            22px 16px;
-
-        border-radius:
             20px;
     }
 
 
-    .grid {
+    .school-name {
+
+        font-size: 15px;
+    }
+
+
+    .menu {
+
+        display: none;
+    }
+
+
+    .hero h1 {
+
+        letter-spacing:
+            -4px;
+    }
+
+
+    .countdown {
 
         grid-template-columns:
             repeat(2,1fr);
+    }
+
+
+    .cards {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .city-card {
+
+        min-height:
+            350px;
+    }
+
+
+    .train {
+
+        font-size:
+            55px;
     }
 
 
@@ -337,48 +1321,28 @@ body::before {
         padding:
             10px 16px;
 
-        font-size: 13px;
+        font-size:
+            13px;
     }
-}
 
-
-/* GRADIENT EFFECTS */
-body {
-    background-size: 180% 180%;
-    animation: gradientFlow 14s ease infinite;
-}
-
-.title,
-.start,
-.label,
-.today b {
-    background: linear-gradient(90deg, #ffd166, #ff7ab8, #9b8cff, #6dd5ff);
-    background-size: 250% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: textGradient 7s ease infinite;
-}
-
-.box {
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
-}
-
-@keyframes gradientFlow {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-@keyframes textGradient {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
 }
 
 </style>
+
 </head>
 
 
 <body>
+
+
+<!-- ==========================
+     STARS
+=========================== -->
+
+<div
+    class="stars"
+    id="stars">
+</div>
 
 
 <!-- ==========================
@@ -397,7 +1361,9 @@ body {
 </audio>
 
 
-<!-- MUSIC BUTTON -->
+<!-- ==========================
+     MUSIC BUTTON
+=========================== -->
 
 <button
     id="musicButton"
@@ -408,423 +1374,372 @@ body {
 </button>
 
 
-
 <!-- ==========================
-     MAIN CONTENT
+     HEADER
 =========================== -->
 
-<main class="card">
+<header>
 
+    <div class="school-name">
 
-    <div class="kicker">
-        TRACK YOUR
+        KENSRI SCHOOL
+
+        <span>
+            CLASS VIII
+        </span>
+
     </div>
 
 
-    <div class="title">
-        FUN TRIP
+    <nav class="menu">
+
+        <a href="#countdown">
+            Countdown
+        </a>
+
+        <a href="#journey">
+            Journey
+        </a>
+
+        <a href="#hyderabad">
+            Hyderabad
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ==========================
+     HERO
+=========================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+
+        <div class="eyebrow">
+            KENSRI SCHOOL · CLASS VIII
+        </div>
+
+
+        <h1>
+            HYDERABAD
+        </h1>
+
+
+        <div class="subtitle">
+            THE CLASS VIII ADVENTURE
+        </div>
+
+
+        <div class="route">
+
+
+            <div class="route-labels">
+
+                <span>
+                    📍 BENGALURU
+                </span>
+
+
+                <span>
+                    HYDERABAD 📍
+                </span>
+
+            </div>
+
+
+            <div class="route-line">
+
+                <div
+                    class="station start">
+                </div>
+
+
+                <div
+                    class="station end">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="eyebrow">
+
+            🚆 TRAVELLING BY TRAIN
+
+        </div>
+
+
     </div>
 
 
-    <div class="subtitle">
-        ADVENTURE AWAITS · MEMORIES FOREVER
+    <!-- ANIMATED TRAIN -->
+
+    <div class="train-track">
+
+        <div class="train">
+            🚆
+        </div>
+
+        <div class="track">
+        </div>
+
+        <div class="sleepers">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================
+     COUNTDOWN
+=========================== -->
+
+<section
+    class="countdown-section"
+    id="countdown">
+
+
+    <div class="section-title">
+
+        THE JOURNEY BEGINS IN
+
     </div>
 
 
-    <div class="start">
-        TRIP STARTS ON
-    </div>
+    <h2>
+
+        COUNTDOWN TO ADVENTURE
+
+    </h2>
 
 
-    <div class="date">
-        29 SEPTEMBER
-    </div>
+    <div class="countdown">
 
 
-
-    <!-- COUNTDOWN -->
-
-    <section
-        class="grid"
-        aria-label="Countdown">
-
-
-        <div class="box">
+        <div class="time-box">
 
             <div
-                class="num"
+                class="time-number"
                 id="days">
 
                 00
 
             </div>
 
-            <div class="label">
+
+            <div class="time-label">
+
                 DAYS
+
             </div>
 
         </div>
 
 
 
-        <div class="box">
+        <div class="time-box">
 
             <div
-                class="num"
+                class="time-number"
                 id="hours">
 
                 00
 
             </div>
 
-            <div class="label">
+
+            <div class="time-label">
+
                 HOURS
+
             </div>
 
         </div>
 
 
 
-        <div class="box">
+        <div class="time-box">
 
             <div
-                class="num"
+                class="time-number"
                 id="minutes">
 
                 00
 
             </div>
 
-            <div class="label">
+
+            <div class="time-label">
+
                 MINUTES
+
             </div>
 
         </div>
 
 
 
-        <div class="box">
+        <div class="time-box">
 
             <div
-                class="num"
+                class="time-number"
                 id="seconds">
 
                 00
 
             </div>
 
-            <div class="label">
+
+            <div class="time-label">
+
                 SECONDS
+
             </div>
 
         </div>
 
 
-    </section>
+    </div>
+
+</section>
 
 
+<!-- ==========================
+     PROGRESS
+=========================== -->
 
-    <!-- TODAY -->
+<section
+    class="progress-section">
 
-    <div class="today">
 
-        TODAY IS
+    <div class="section-title">
 
-        <b id="today">
-            --
-        </b>
+        THE FINAL COUNTDOWN
 
     </div>
 
 
+    <h2>
 
-    <div class="message">
-        Let the adventure begin!
+        GETTING CLOSER...
+
+    </h2>
+
+
+    <div class="progress-container">
+
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="progressFill">
+            </div>
+
+        </div>
+
+
+        <div
+            class="progress-text"
+            id="progressText">
+
+            Calculating journey progress...
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================
+     JOURNEY DETAILS
+=========================== -->
+
+<section
+    class="details"
+    id="journey">
+
+
+    <div class="section-title">
+
+        TRIP INFORMATION
+
     </div>
 
 
+    <h2>
 
-    <div class="footer">
+        THE JOURNEY
 
-        EXPLORE
-        &nbsp; · &nbsp;
+    </h2>
 
-        CAPTURE
-        &nbsp; · &nbsp;
 
-        EXPERIENCE
-        &nbsp; · &nbsp;
+    <div class="cards">
 
-        DISCOVER
-        &nbsp; · &nbsp;
 
-        ENJOY
+        <div class="card">
 
-    </div>
+            <div class="card-icon">
+                📅
+            </div>
 
+            <div class="card-title">
+                DATE
+            </div>
 
-</main>
+            <div class="card-value">
+                29 September 2026
+            </div>
 
+        </div>
 
 
-<script>
 
+        <div class="card">
 
-/* =================================
-   COUNTDOWN
-================================= */
+            <div class="card-icon">
+                ⏰
+            </div>
 
+            <div class="card-title">
+                DEPARTURE
+            </div>
 
-/*
-   Trip date:
-   29 September 2026
-   Midnight IST
-*/
+            <div class="card-value">
+                3:00 PM
+            </div>
 
-const targetDate =
-    new Date(
-        "2026-09-29T15:00:00+05:30"
-    );
+        </div>
 
 
-function updateCountdown() {
 
+        <div class="card">
 
-    const now =
-        new Date();
+            <div class="card-icon">
+                🚆
+            </div>
 
+            <div class="card-title">
+                TRANSPORT
+            </div>
 
-    const difference =
-        targetDate.getTime()
-        -
-        now.getTime();
+            <div class="card-value">
+                TRAIN
+            </div>
 
+        </div>
 
 
-    /* TRIP HAS STARTED */
 
-    if (difference <= 0) {
+        <div class="card">
 
-
-        document.getElementById(
-            "days"
-        ).textContent = "00";
-
-
-        document.getElementById(
-            "hours"
-        ).textContent = "00";
-
-
-        document.getElementById(
-            "minutes"
-        ).textContent = "00";
-
-
-        document.getElementById(
-            "seconds"
-        ).textContent = "00";
-
-
-        document.querySelector(
-            ".date"
-        ).textContent =
-            "🎉 THE TRIP HAS BEGUN! 🎉";
-
-
-        document.querySelector(
-            ".message"
-        ).textContent =
-            "Adventure time! 🚀✈️🏖️";
-
-
-    }
-
-
-    /* COUNTDOWN IS STILL RUNNING */
-
-    else {
-
-
-        const days =
-            Math.floor(
-                difference /
-                (1000 * 60 * 60 * 24)
-            );
-
-
-        const hours =
-            Math.floor(
-                (
-                    difference /
-                    (1000 * 60 * 60)
-                ) % 24
-            );
-
-
-        const minutes =
-            Math.floor(
-                (
-                    difference /
-                    (1000 * 60)
-                ) % 60
-            );
-
-
-        const seconds =
-            Math.floor(
-                (
-                    difference /
-                    1000
-                ) % 60
-            );
-
-
-
-        document.getElementById(
-            "days"
-        ).textContent =
-            String(days)
-            .padStart(2,"0");
-
-
-        document.getElementById(
-            "hours"
-        ).textContent =
-            String(hours)
-            .padStart(2,"0");
-
-
-        document.getElementById(
-            "minutes"
-        ).textContent =
-            String(minutes)
-            .padStart(2,"0");
-
-
-        document.getElementById(
-            "seconds"
-        ).textContent =
-            String(seconds)
-            .padStart(2,"0");
-
-    }
-
-
-
-    /* TODAY'S DATE */
-
-    const today =
-        new Intl.DateTimeFormat(
-            "en-IN",
-            {
-                day: "2-digit",
-
-                month: "long",
-
-                year: "numeric",
-
-                timeZone:
-                    "Asia/Kolkata"
-            }
-        ).format(now);
-
-
-    document.getElementById(
-        "today"
-    ).textContent =
-        today.toUpperCase();
-
-}
-
-
-
-/* =================================
-   MUSIC
-================================= */
-
-
-const music =
-    document.getElementById(
-        "bgMusic"
-    );
-
-
-const musicButton =
-    document.getElementById(
-        "musicButton"
-    );
-
-
-
-musicButton.addEventListener(
-    "click",
-    function() {
-
-
-        if (music.paused) {
-
-
-            music.play()
-                .then(function() {
-
-
-                    musicButton.textContent =
-                        "🔊 Music On";
-
-
-                })
-                .catch(function(error) {
-
-
-                    console.log(
-                        "Music could not play:",
-                        error
-                    );
-
-
-                    musicButton.textContent =
-                        "❌ Music Not Found";
-
-
-                });
-
-
-        }
-
-
-        else {
-
-
-            music.pause();
-
-
-            musicButton.textContent =
-                "🎵 Play Music";
-
-        }
-
-
-    }
-);
-
-
-
-/* =================================
-   START
-================================= */
-
-
-updateCountdown();
-
-
-setInterval(
-    updateCountdown,
-    1000
-);
-
-
-</script>
-
-</body>
-</html>
+            <div class="card-icon">
+                
+         
